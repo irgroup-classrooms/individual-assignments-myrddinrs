@@ -19,7 +19,10 @@ Get-Content -Path 'C:\Users\merli\Downloads\contacts.csv' | Select-String -Patte
 ``` 
 2. Extract all phone numbers from the text.
 ``` 
-
+$emailRegex = '\(555\) \d{3}-\d{4}'
+Get-Content -Path 'C:\Users\merli\Downloads\contacts.csv' | Select-String -Pattern $emailRegex -AllMatches |
+>>     ForEach-Object { $_.Matches } |
+>>     ForEach-Object { $_.Value }
 ``` 
 3. Extract all names that start with the letter ‘J’.
 ``` 
