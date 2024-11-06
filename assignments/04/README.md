@@ -12,7 +12,10 @@ You can add your command line in- and outputs directly to this README file. Alte
 
 1. Extract all email addresses from the text.
 ``` 
-
+$emailRegex = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+Get-Content -Path 'C:\Users\merli\Downloads\contacts.csv' | Select-String -Pattern $emailRegex -AllMatches |
+>>     ForEach-Object { $_.Matches } |
+>>     ForEach-Object { $_.Value }
 ``` 
 2. Extract all phone numbers from the text.
 ``` 
